@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from djano.utils.encoding import python_2_unicode_compatible
+from django.utils.encoding import python_2_unicode_compatible
 from django.template.defaultfilters import truncatechars, striptags
 from markupfield.fields import MarkupField
 
@@ -24,4 +24,4 @@ class CodeSample(ContentManageable):
         verbose_name_plural = 'samples'
 
     def __str__(self):
-	return truncatechars(striptags(self.copy), 20)
+        return truncatechars(striptags(self.copy), 20)

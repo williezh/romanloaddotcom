@@ -25,4 +25,4 @@ class DocumentationIndexView(TemplateView):
             'latest_python2': Release.objects.latest_python2(),
             'latest_python3': Release.objects.latest_python3(),
         })
-	return context
+        return context
