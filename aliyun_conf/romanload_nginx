@@ -1,22 +1,22 @@
-upstream hello_app_server {
-  server unix:/home/willie/romanload/aliyun_conf/run/gunicorn.sock fail_timeout=0;
+upstream romanloaddotcom_server {
+  server unix:/home/willie/run/gunicorn.sock fail_timeout=0;
 }
 
 server {
     listen   80;
-    server_name romanload.test;
+    server_name romanloaddotcom.test;
 
 client_max_body_size 4G;
 
-access_log /home/willie/romanload/logs/nginx-access.log;
-error_log /home/willie/romanload/logs/nginx-error.log;
+access_log /home/willie/romanloaddotcom/logs/nginx-access.log;
+error_log /home/willie/romanloaddotcom/logs/nginx-error.log;
 
 location /static/ {
-    alias   /home/willie/romanload/static/;
+    alias   /home/willie/romanloaddotcom/static/;
 }
 
 location /media/ {
-    alias   /home/willie/romanload/media/;
+    alias   /home/willie/romanloaddotcom/media/;
 }
 
 location / {
