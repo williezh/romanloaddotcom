@@ -60,14 +60,14 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend', 
-EMAIL_USE_TLS = False,  
-EMAIL_USE_SSL = True,    
-EMAIL_HOST = 'smtp.126.com',   
-EMAIL_PORT = 25,    
-EMAIL_HOST_USER = 'jaket5219999@126.com',   
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD"), 
-DEFAULT_FROM_EMAIL = 'jaket5219999@126.com',      
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+EMAIL_HOST = 'smtp.126.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'jaket5219999@126.com'
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = 'jaket5219999@126.com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,6 +92,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # allauth
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -107,7 +109,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'romanload',
-        'USER': 'root',
+        'USER': 'postgres',
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
         'HOST': '127.0.0.1',
         'PORT': 5432,
