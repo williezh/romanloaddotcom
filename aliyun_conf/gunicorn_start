@@ -1,11 +1,28 @@
-(...)
-NAME="romanloaddotcom"                                  # Django应用的名称
+#!/bin/bash
+NAME="romanloaddotcom"
 DJANGODIR=/home/willie/romanloaddotcom
-SOCKFILE=/home/willie/romanloaddotcom
-/run/gunicorn.sock  
+SOCKFILE=/home/willie/romanloaddotcom/run/gunicorn.sock  
 USER=willie
-GROUP=webapps                                     # 用户组
-NUM_WORKERS=3                                     # 一般是服务器使用CPU的个数X2+1，所以一个CPU的话，worker就是3
-DJANGO_SETTINGS_MODULE=romanloaddotcom.settings             # Django应用使用的settings文件
-DJANGO_WSGI_MODULE=romanloaddotcom.wsgi                     # WSGI 模块名称
-(...)
+GROUP=webapps        
+NUM_WORKERS=3       
+DJANGO_SETTINGS_MODULE=romanloaddotcom.settings  
+DJANGO_WSGI_MODULE=romanloaddotcom.wsgi 
+echo “Starting $NAME as `whoami`”
+# Activate the virtual environment
+cd $DJANGODIR
+source venv/bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+# Create the run directory if it doesn’t exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use –daemon)
+exec ~/romanloaddotcom/venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+–name $NAME \
+–workers $NUM_WORKERS \
+–max-requests $MAX_REQUESTS \
+–user=$USER –group=$GROUP \
+–bind=0.0.0.0:3000 \
+–log-level=error \
+–log-file=-
