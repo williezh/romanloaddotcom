@@ -18,7 +18,7 @@ RUNDIR=$(dirname $SOCKFILE)
 test -d $RUNDIR || mkdir -p $RUNDIR
 # Start your Django Unicorn
 # Programs meant to be run under supervisor should not daemonize themselves (do not use –daemon)
-exec ~/romanloaddotcom/venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+exec /home/willie/romanloaddotcom/venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
 –name $NAME \
 –workers $NUM_WORKERS \
 –max-requests $MAX_REQUESTS \
