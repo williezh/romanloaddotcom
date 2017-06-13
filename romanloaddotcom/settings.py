@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.weixin',
     'allauth.socialaccount.providers.baidu',
+
+    'gunicorn',
 ]
 
 SITE_ID = int(os.environ.get("SITE_ID", 1))
