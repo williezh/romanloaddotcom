@@ -8,6 +8,7 @@ django-allauth==0.32.0
 django-hosts==2.0
 django-markdownx==2.0.21
 docutils==0.13.1
+gunicorn==19.7.1
 idna==2.5
 imagesize==0.7.1
 Jinja2==2.9.6
