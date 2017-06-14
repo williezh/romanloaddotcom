@@ -22,7 +22,7 @@ exec /home/willie/romanloaddotcom/venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:applic
 –name $NAME \
 –workers $NUM_WORKERS \
 –max-requests $MAX_REQUESTS \
-–user=$USER –group=$GROUP \
-–bind=0.0.0.0:3000 \
+–-user=$USER –-group=$GROUP \
+–b 172.18.204.154:8000 \
 –log-level=error \
 –log-file=-
