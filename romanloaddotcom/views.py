@@ -1,7 +1,7 @@
 from django.views.generic.base import TemplateView
 
 from codesamples.models import CodeSample
-from downloads.models import Release
+#from downloads.models import Release
 
 
 class IndexView(TemplateView):
@@ -21,8 +21,8 @@ class DocumentationIndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update({
-            'latest_python2': Release.objects.latest_python2(),
-            'latest_python3': Release.objects.latest_python3(),
-        })
+        #context.update({
+        #    'latest_python2': Release.objects.latest_python2(),
+        #    'latest_python3': Release.objects.latest_python3(),
+        #})
         return context

@@ -11,4 +11,4 @@ def box(label):
         return Box.objects.only('content').get(label=label).content.rendered
     except Box.DoesNotExist:
         log.warning('WARNING: box not found: label=%s', label)
-	    return ''
+        return ''

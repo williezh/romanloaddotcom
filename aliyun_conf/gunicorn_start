@@ -1,0 +1,28 @@
+#!/bin/bash
+NAME="romanloaddotcom"
+DJANGODIR=/home/willie/romanloaddotcom
+SOCKFILE=/home/willie/romanloaddotcom/run/gunicorn.sock  
+USER=willie
+GROUP=webapps        
+NUM_WORKERS=3       
+DJANGO_SETTINGS_MODULE=romanloaddotcom.settings  
+DJANGO_WSGI_MODULE=romanloaddotcom.wsgi 
+echo “Starting $NAME as `whoami`”
+# Activate the virtual environment
+cd $DJANGODIR
+source venv/bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+# Create the run directory if it doesn’t exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use –daemon)
+exec /home/willie/romanloaddotcom/venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+–name $NAME \
+–workers $NUM_WORKERS \
+–max-requests $MAX_REQUESTS \
+–-user $USER –-group $GROUP \
+-b 172.18.204.154:8000 \
+--log-level error \
+--error-logfile -

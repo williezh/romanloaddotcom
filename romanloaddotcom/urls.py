@@ -13,8 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import RedirectView, TemplateView
+from django.views.static import serve
+from django.conf import settings
 
 from . import views
 
@@ -33,6 +36,20 @@ urlpatterns = [
         name='about'),
 
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^spring/$', TemplateView.as_view(template_name='taobao.html'), name='spring'),
     
     url(r'^admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+    url(r'^m/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    ]
+    try:
+        import debug_toolbar
+    except ImportError:
+        pass
+    else:
+        urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+        ]
