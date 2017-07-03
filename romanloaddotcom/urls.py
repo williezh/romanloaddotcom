@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='homepage.html'), name="home"),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^spring/$', TemplateView.as_view(template_name='taobao.html'), name='spring'),
 
 ]
 
