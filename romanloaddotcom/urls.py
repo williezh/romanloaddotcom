@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^spring/(\w+)/$', views.spring, name='spring2'),
     
     url(r'^admin/', admin.site.urls),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/media/favicon.ico')),
 ]
 
 if settings.DEBUG:

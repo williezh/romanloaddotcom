@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+from django.views.generic.base import RedirectView
 from django.shortcuts import render
 
 from codesamples.models import CodeSample
