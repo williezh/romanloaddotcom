@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+from django.shortcuts import render
 
 from codesamples.models import CodeSample
 #from downloads.models import Release
@@ -26,3 +27,6 @@ class DocumentationIndexView(TemplateView):
         #    'latest_python3': Release.objects.latest_python3(),
         #})
         return context
+
+def spring(request, img_name):
+    return render(request, 'weixinlianjie.html', {'spring': img_name})
