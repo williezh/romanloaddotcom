@@ -2,8 +2,6 @@ from django.views.generic.base import TemplateView
 from django.views.generic.base import RedirectView
 from django.shortcuts import render
 
-from codesamples.models import CodeSample
-#from downloads.models import Release
 
 
 class IndexView(TemplateView):
@@ -12,9 +10,6 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context.update({
-            'code_samples': CodeSample.objects.published()[:5],
-        })
         return context
 
 
@@ -31,3 +26,7 @@ class DocumentationIndexView(TemplateView):
 
 def spring(request, img_name):
     return render(request, 'weixinlianjie.html', {'spring': img_name})
+
+
+def rd(request):
+    return render(request, 'rd.html')

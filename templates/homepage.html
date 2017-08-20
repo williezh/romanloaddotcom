@@ -1,1 +1,25 @@
-{% extends "base.html" %}
+{% load account %}
+
+{% load i18n %}
+
+Site is under construction...
+<br>
+网站正在建设中，敬请期待。。。
+<br>
+
+
+<ul class="nav navbar-nav pull-right">
+    {% if user.is_authenticated %}
+        <li class="navbar-text">
+            <i class="fa fa-user"></i> {% user_display user as user_display %}
+            {% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}
+        </li>
+
+        <li>
+            <a id="account_logout" href="{% url 'account_logout' %}"><i class="fa fa-power-off"></i> {% trans "Log out" %}</a>
+        </li>
+    {% else %}
+        <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
+        <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
+    {% endif %}
+</ul>

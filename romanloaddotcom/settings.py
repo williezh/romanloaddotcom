@@ -40,12 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.redirects',
     'django.contrib.admindocs',
 
-    'codesamples',
-    'boxes',
-    'downloads',
-    'blogs',
-    'cms',
-
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

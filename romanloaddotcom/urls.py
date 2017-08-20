@@ -23,7 +23,8 @@ from . import views
 
 urlpatterns = [
     # homepage
-    url(r'^$', views.IndexView.as_view(), name='home'),
+    url(r'^$', TemplateView.as_view(template_name="homepage.html"), 
+        name='home'),
     url(r'^humans.txt$', TemplateView.as_view(template_name='humans.txt', 
         content_type='text/plain')),
     url(r'^robots.txt$', TemplateView.as_view(template_name='robots.txt', 
@@ -36,6 +37,7 @@ urlpatterns = [
         name='about'),
 
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^rd/$', views.rd, name='randombill'),
     url(r'^spring/$', TemplateView.as_view(template_name='taobao.html'), name='spring'),
     url(r'^spring/(\w+)/$', views.spring, name='spring2'),
     

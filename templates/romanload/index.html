@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load boxes %}
 
 {% block body_attributes %}class="python home" id="homepage"{% endblock %}
 
@@ -28,7 +27,6 @@
 
 {% block intro_copy %}
         <div class="introduction">
-            {% box 'homepage-introduction' %}
         </div>
 {% endblock %}
 
@@ -39,19 +37,15 @@
                 <div class="row">
 
                     <div class="small-widget get-started-widget">
-                        {% box 'homepage-get-started' %}
                     </div>
 
                     <div class="small-widget download-widget">
-                        {% box 'homepage-downloads' %}
                     </div>
 
                     <div class="small-widget documentation-widget">
-                        {% box 'homepage-documentation' %}
                     </div>
 
                     <div class="small-widget jobs-widget last">
-                        {% box 'homepage-jobs' %}
                     </div>
 
                 </div>
@@ -59,11 +53,9 @@
                 <div class="list-widgets row">
 
                     <div class="medium-widget blog-widget">
-                        {% include 'components/blog-posts.html' %}
                     </div>
 
                     <div class="medium-widget event-widget last">
-                        {% include 'components/event-posts.html' %}
                     </div>
 
                 </div>
@@ -71,19 +63,14 @@
                 <div class="row">
 
                     <div class="medium-widget success-stories-widget">
-                        {% include 'components/success-story.html' %}
                     </div>
 
                     <div class="medium-widget applications-widget last">
                         <div class="shrubbery">
-                            {% box 'widget-use-python-for' %}
                         </div><!-- end .shrubbery -->
                     </div>
 
                 </div>
 
-                {% include 'components/pep-widget.html' %}
-
-                {% include 'components/psf-widget.html' %}
 
 {% endblock content %}
