@@ -1,30 +1,47 @@
-upstream romanloaddotcom_server {
-  server unix:/home/willie/run/gunicorn.sock fail_timeout=0;
-}
-
+# aliyun
 server {
-    listen   80;
+	listen 80;
+	listen [::]:80;
+
     server_name www.romanload.com;
 
-client_max_body_size 4G;
+	location / {
+		include /etc/nginx/uwsgi_params;
+        uwsgi_pass 172.18.204.154:8999;
+	}
 
-access_log /home/willie/romanloaddotcom/logs/nginx-access.log;
-error_log /home/willie/romanloaddotcom/logs/nginx-error.log;
-
-location /static/ {
-    alias   /home/willie/romanloaddotcom/static/;
-}
-
-location /media/ {
-    alias   /home/willie/romanloaddotcom/media/;
-}
-
-location / {
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
-    proxy_redirect off;
-    if (!-f $request_filename) {
-        proxy_pass http://172.18.204.154:8000;
-        break;
+    location /static {
+        alias /home/willie/romanloaddotcom/collected_static;
     }
+
+    location /media/ {
+        alias   /home/willie/romanloaddotcom/media/;
+    }
+
+    access_log /home/willie/romanloaddotcom/logs/nginx-access.log;
+    error_log /home/willie/romanloaddotcom/logs/nginx-error.log;
 }
+#upstream romanloaddotcom_server {
+#  server unix:/home/willie/run/gunicorn.sock fail_timeout=0;
+#}
+
+#server {
+#    listen   80;
+#    server_name www.romanload.com;
+#
+#client_max_body_size 4G;
+#
+#
+#location /static/ {
+#    alias   /home/willie/romanloaddotcom/static/;
+#}
+#
+#location / {
+#    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#    proxy_set_header Host $http_host;
+#    proxy_redirect off;
+#    if (!-f $request_filename) {
+#        proxy_pass http://172.18.204.154:8000;
+#        break;
+#    }
+#}

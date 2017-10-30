@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# collect static files for django
+collected_static/
+
+# log for nohup
+nohup.out
