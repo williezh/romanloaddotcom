@@ -12,6 +12,7 @@ django-hosts==2.0
 django-markdownx==2.0.21
 django-markupfield==1.4.2
 docutils==0.13.1
+gevent==1.2.2
 greenlet==0.4.12
 gunicorn==19.7.1
 idna==2.5
